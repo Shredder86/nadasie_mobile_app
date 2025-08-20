@@ -1,0 +1,58 @@
+# .github/workflows/build-apk.yml
+name: Build Android APK (EAS)
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: EAS Login
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+        run: eas login --token $EAS_TOKEN
+
+      - name: Build Android APK (preview)
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+          WC_API_URL: ${{ secrets.WC_API_URL }}
+          WC_CONSUMER_KEY: ${{ secrets.WC_CONSUMER_KEY }}
+          WC_CONSUMER_SECRET: ${{ secrets.WC_CONSUMER_SECRET }}
+        run: |
+          eas build --platform android --profile preview --non-interactive
+
+      - name: Get latest artifact URL
+        id: artifact
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq curl
+          JSON=$(eas build:list --platform android --status finished --limit 1 --json)
+          URL=$(echo "$JSON" | jq -r '.[0].artifacts.buildUrl // .[0].artifacts.applicationArchiveUrl // .[0].artifacts.artifactUrl // empty')
+          echo "artifact_url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Download APK
+        if: steps.artifact.outputs.artifact_url != ''
+        run: |
+          curl -L "${{ steps.artifact.outputs.artifact_url }}" -o app.apk
+
+      - name: Upload APK to workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nadasie-mobile-app
+          path: app.apk
