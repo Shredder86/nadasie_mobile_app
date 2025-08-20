@@ -1,26 +1,16 @@
-# NaDaSie Mobile App
+<!-- README.md -->
+# NaDaSie Mobile (Expo / React Native)
 
-A Flutter-based mobile application for the WooCommerce store [nadasie.pl](https://nadasie.pl).
+## Build przez GitHub Actions → APK
+1. W repo GitHub dodaj *Secrets* (Settings → Secrets and variables → Actions):
+   - `EAS_TOKEN` – z `eas token:create`
+   - `WC_API_URL` – `https://nadasie.pl/wp-json/wc/v3`
+   - `WC_CONSUMER_KEY` – `ck_...`
+   - `WC_CONSUMER_SECRET` – `cs_...`
+2. Push na `master` uruchomi workflow.  
+3. Po zakończeniu pobierz `app.apk` z **Artifacts**.
 
-## Features
-
-- 🛍️ Product listing and details
-- 🔍 Dynamic search
-- 🔐 Login and registration
-- 🛒 Cart with session persistence
-- 📦 Checkout with address and payment
-- 🔔 Firebase push notifications
-- 🎨 UI with NaDaSie branding
-
-## Setup
-
-1. Clone the repo
-2. Run `flutter pub get`
-3. Configure Firebase for push notifications
-4. Run on Android/iOS
-
-## Branding
-
-- Logo: `assets/logo.png`
-- Primary color: `#FF6F00`
-- Secondary color: `#4CAF50`
+## Lokalnie (opcjonalnie)
+```bash
+npm install
+npm start
