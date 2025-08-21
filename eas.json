@@ -3,6 +3,12 @@
     "appVersionSource": "remote"
   },
   "build": {
+    "preview": {
+      "android": {
+        "workflow": "managed",
+        "buildType": "apk"
+      }
+    },
     "android": {
       "workflow": "managed"
     },
