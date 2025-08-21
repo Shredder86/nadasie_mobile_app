@@ -23,12 +23,12 @@ jobs:
         run: npm install
 
       - name: Build APK
-          run: eas build -p android --profile preview --non-interactive
-          env:
-            EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build -p android --profile preview --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Upload APK
-          uses: actions/upload-artifact@v4
-          with:
-            name: nadasie-app
-            path: dist/**/*.apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: nadasie-app
+          path: dist/**/*.apk
