@@ -1,17 +1,17 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch: # uruchamiasz ręcznie z Actions
+  workflow_dispatch: # ręczne uruchamianie z Actions
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js (LTS)
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -22,12 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Configure EAS
-        run: eas build:configure
-
-      - name: Build APK (Preview profile)
+      # Budowanie APK w profilu "preview"
+      - name: Build APK
         run: eas build -p android --profile preview --non-interactive --local
-          env:
+        env:
           EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
 
       - name: Upload APK
