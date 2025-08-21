@@ -1,37 +1,34 @@
 {
   "expo": {
-    "name": "NaDaSie.pl - Zakupy ZERO WASTE",
+    "name": "Nadasie",
     "slug": "nadasie-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
     "assetBundlePatterns": [
       "**/*"
+    ],
+    "plugins": [
+      "expo-notifications"
     ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       },
-      "package": "pl.nadasie.app",
-      "versionCode": 1
+      "package": "com.nadasie.mobile"
     },
     "web": {
-      "favicon": "./assets/icon.png"
-    },
-    "plugins": [
-      "expo-notifications"
-    ]
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
