@@ -1,4 +1,8 @@
 {
+  "cli": {
+    "version": ">=3.30.0",
+    "appVersionSource": "git-tag"
+  },
   "build": {
     "preview": {
       "android": {
