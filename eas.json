@@ -1,17 +1,11 @@
 {
   "cli": {
-    "version": ">=3.30.0",
-    "appVersionSource": "local"
+    "version": ">=3.18.3"
   },
   "build": {
     "preview": {
       "android": {
-        "buildType": "apk"
-      }
-    },
-    "production": {
-      "android": {
-        "buildType": "app-bundle"
+        "workflow": "managed"
       }
     }
   }
