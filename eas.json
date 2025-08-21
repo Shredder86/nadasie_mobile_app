@@ -1,11 +1,12 @@
 {
   "cli": {
-    "version": ">=3.18.3"
+    "version": ">= 3.18.3"
   },
   "build": {
     "preview": {
+      "distribution": "internal",
       "android": {
-        "workflow": "managed"
+        "buildType": "apk"
       }
     }
   }
