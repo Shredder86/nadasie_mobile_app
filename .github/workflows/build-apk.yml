@@ -16,13 +16,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: |
-          npm install
-          npx expo install
-
       - name: Install EAS CLI
         run: npm install -g eas-cli
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Build APK
         run: eas build -p android --profile preview --non-interactive
@@ -33,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nadasie-app
-          path: **/build/**/*.apk
+          path: build-*/outputs/**/*.apk
