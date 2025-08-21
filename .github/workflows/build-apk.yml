@@ -11,21 +11,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js (LTS)
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Install dependencies
-        run: npm install -g eas-cli@3.18.3
+        run: |
+          npm install
+          npx expo install
 
-      - name: Build Android APK
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Build APK
+        run: eas build -p android --profile preview --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive
 
-      # UWAGA: artefakt będzie w chmurze Expo, nie w GitHub
-      - name: Output Expo build URL
-        run: eas build:list --platform android --limit 1
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: nadasie-app
+          path: **/build/**/*.apk
