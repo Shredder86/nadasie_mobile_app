@@ -5,15 +5,8 @@
   "build": {
     "preview": {
       "android": {
-        "workflow": "managed",
         "buildType": "apk"
       }
-    },
-    "android": {
-      "workflow": "managed"
-    },
-    "ios": {
-      "workflow": "managed"
     }
   }
 }
