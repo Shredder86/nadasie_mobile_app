@@ -29,6 +29,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "99f42959-6840-42a3-bea3-f198dba20975"
+      }
+    },
+    "owner": "shredderpl"
   }
 }
